@@ -298,6 +298,7 @@ export const REWARDS_CATALOG = [
     tag: "SIGNATURE MERCH",
     description: "Διπλού τοιχώματος ανοξείδωτο ατσάλι. Διατηρεί την Coca-Cola Original παγωμένη για 24 ώρες. Χαραγμένη υπογραφή Κ. Αργυρού.",
     image: "/Pics/coca-cola-can-original.png", // Fallback / preview
+    wearableKey: null,
   },
   {
     id: "merch-bucket-hat",
@@ -308,9 +309,10 @@ export const REWARDS_CATALOG = [
     requiredLevel: 1,
     isExclusive: true,
     hasSignature: true,
-    tag: "EXCLUSIVE MERCH",
-    description: "Heavyweight black cotton με κόκκινη ανάγλυφη ραφή 'Original' και επίσημη υπογραφή Κ. Αργυρού.",
+    tag: "DIGITAL TWIN // WEARABLE",
+    description: "Heavyweight black cotton με κόκκινη ανάγλυφη ραφή 'Original'. Ξεκλειδώνει αυτόματα και ψηφιακό wearable στο Avatar Studio!",
     image: "/Pics/avatar-wearable-hat.png",
+    wearableKey: "hat",
   },
   {
     id: "merch-hoodie",
@@ -321,9 +323,10 @@ export const REWARDS_CATALOG = [
     requiredLevel: 2,
     isExclusive: true,
     hasSignature: true,
-    tag: "SIGNATURE MERCH",
-    description: "Original Taste red and black fleece. Επίσημη συλλεκτική έκδοση συνεργασίας με ανάγλυφη υπογραφή.",
+    tag: "DIGITAL TWIN // WEARABLE",
+    description: "Original Taste red and black fleece. Επίσημη συνεργασία. Ξεκλειδώνει αυτόματα και ψηφιακό wearable στο Avatar Studio!",
     image: "/Pics/avatar-wearable-hoodie.png",
+    wearableKey: "hoodie",
   },
 
   // Tech & Gadgets
@@ -339,6 +342,7 @@ export const REWARDS_CATALOG = [
     tag: "PREMIUM TECH",
     description: "Ultra-portable αδιάβροχο ηχείο Bluetooth με rich original ήχο και integrated carabiner.",
     image: "/Pics/jbl-cocacola.webp",
+    wearableKey: null,
   },
 
   // Vouchers (Powered by Partner SVGs)
@@ -354,6 +358,7 @@ export const REWARDS_CATALOG = [
     partnerSvg: "/Pics/partner-efood.svg",
     tag: "DIGITAL VOUCHER",
     description: "10€ έκπτωση στην επόμενη παραγγελία σου. Ισχύει αποκλειστικά για street food combos με Coca-Cola Original Taste.",
+    wearableKey: null,
   },
   {
     id: "voucher-wolt",
@@ -367,6 +372,7 @@ export const REWARDS_CATALOG = [
     partnerSvg: "/Pics/partner-wolt.svg",
     tag: "DIGITAL VOUCHER",
     description: "10€ Wolt credits για γρήγορο delivery στο σπίτι ή στο πάρτι.",
+    wearableKey: null,
   },
   {
     id: "voucher-viva",
@@ -380,6 +386,7 @@ export const REWARDS_CATALOG = [
     partnerSvg: "/Pics/partner-viva.svg",
     tag: "LIVE EVENT TICKET",
     description: "20€ voucher για συναυλίες και live stages μέσω του δικτύου viva.com (more.com).",
+    wearableKey: null,
   },
   {
     id: "voucher-netflix",
@@ -393,7 +400,7 @@ export const REWARDS_CATALOG = [
     partnerSvg: "/Pics/partner-netflix.svg",
     tag: "ENTERTAINMENT",
     description: "1 μήνας δωρεάν Netflix Standard subscription για ατελείωτο streaming.",
+    wearableKey: null,
   },
 ];
-
 

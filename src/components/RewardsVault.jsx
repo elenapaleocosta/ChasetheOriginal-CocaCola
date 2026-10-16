@@ -21,6 +21,7 @@ export default function RewardsVault({
   vaultItems,
   onRedeemItem,
   onDispenseItem,
+  onGoToAvatar,
   dispenseTargetItem,
   setDispenseTargetItem,
 }) {
@@ -452,12 +453,33 @@ export default function RewardsVault({
                   </p>
                 </div>
 
-                <div className="pt-2">
+                {/* Wearable Digital Twin Notice */}
+                {dispenseTargetItem.wearableKey && (
+                  <div className="p-3 rounded-xl bg-[#F40009]/10 border border-[#F40009]/30 text-left flex items-center gap-2.5">
+                    <Sparkles className="w-4 h-4 text-[#F40009] shrink-0" />
+                    <div className="text-[11px] leading-snug">
+                      <strong className="text-white block font-mono">Digital Twin Unlocked!</strong>
+                      <span className="text-zinc-300">Το ψηφιακό wearable προστέθηκε αυτόματα στο Avatar Studio σου.</span>
+                    </div>
+                  </div>
+                )}
+
+                <div className="grid grid-cols-2 gap-2 pt-2">
                   <button
                     onClick={closeDispenseModal}
-                    className="w-full py-2.5 rounded-xl bg-[#F40009] text-white font-mono text-xs font-bold uppercase hover:bg-[#d60008] transition-colors"
+                    className="py-2.5 rounded-xl bg-zinc-800 text-white font-mono text-xs font-bold uppercase hover:bg-zinc-700 transition-colors"
                   >
                     Κλεισιμο
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      closeDispenseModal();
+                      if (onGoToAvatar) onGoToAvatar();
+                    }}
+                    className="py-2.5 rounded-xl bg-[#F40009] text-white font-mono text-xs font-bold uppercase hover:bg-[#d60008] transition-colors"
+                  >
+                    Avatar Studio
                   </button>
                 </div>
 

@@ -6,6 +6,7 @@ import VendingMap from './components/VendingMap';
 import CodeEntry from './components/CodeEntry';
 import RewardsVault from './components/RewardsVault';
 import AvatarStudio from './components/AvatarStudio';
+import OriginalMoment from './components/OriginalMoment';
 import { playTap } from './utils/audio';
 
 const STORAGE_KEY = 'coca_cola_chase_state_v1';
@@ -28,7 +29,7 @@ export default function App() {
     return 2400; // Starting all-time cumulative points
   });
 
-  const [activeTab, setActiveTab] = useState('map'); // 'map' | 'code' | 'rewards' | 'avatar'
+  const [activeTab, setActiveTab] = useState('map'); // 'map' | 'code' | 'moments' | 'rewards' | 'avatar'
   const [selectedMachineId, setSelectedMachineId] = useState('HUB-01');
 
   const [claimedCodes, setClaimedCodes] = useState(() => {
@@ -108,6 +109,11 @@ export default function App() {
     setAvailablePoints((prev) => prev + points);
     setTotalPoints((prev) => prev + points);
     setClaimedCodes((prev) => [{ code, points, date }, ...prev]);
+  };
+
+  const handleAwardMomentPoints = ({ type, points, title }) => {
+    setAvailablePoints((prev) => prev + points);
+    setTotalPoints((prev) => prev + points);
   };
 
   const handleRedeemItem = (catalogItem) => {
@@ -224,7 +230,17 @@ export default function App() {
           </div>
         )}
 
-        {/* TAB 3: REWARDS VAULT & CONTACTLESS DISPENSE */}
+        {/* TAB 3: ORIGINAL MOMENTS (Music Events & Live Stages) */}
+        {activeTab === 'moments' && (
+          <div className="animate-fadeIn">
+            <OriginalMoment
+              onAwardPoints={handleAwardMomentPoints}
+              userLevel={userLevel}
+            />
+          </div>
+        )}
+
+        {/* TAB 4: REWARDS VAULT & CONTACTLESS DISPENSE */}
         {activeTab === 'rewards' && (
           <div className="animate-fadeIn">
             <RewardsVault

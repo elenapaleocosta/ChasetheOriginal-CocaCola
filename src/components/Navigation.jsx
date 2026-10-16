@@ -1,12 +1,12 @@
 import React from 'react';
-import { MapPin, KeyRound, Gift, User, Radio } from 'lucide-react';
+import { MapPin, KeyRound, Gift, User, Camera } from 'lucide-react';
 import { playTap } from '../utils/audio';
 
 export default function Navigation({ activeTab, setActiveTab, vaultCount }) {
   const tabs = [
     {
       id: 'map',
-      label: 'Chase & Map',
+      label: 'Hubs',
       greek: 'Χάρτης Hubs',
       icon: MapPin,
       badge: 'LIVE',
@@ -14,15 +14,23 @@ export default function Navigation({ activeTab, setActiveTab, vaultCount }) {
     },
     {
       id: 'code',
-      label: 'Code Entry',
+      label: 'Codes',
       greek: 'Scratch Can',
       icon: KeyRound,
       badge: '+100',
       badgeColor: 'bg-zinc-800 text-zinc-300',
     },
     {
+      id: 'moments',
+      label: 'Moments',
+      greek: 'Original Moment',
+      icon: Camera,
+      badge: '+150',
+      badgeColor: 'bg-[#F40009]',
+    },
+    {
       id: 'rewards',
-      label: 'Vault & Store',
+      label: 'Vault',
       greek: 'Vault & Δώρα',
       icon: Gift,
       badge: vaultCount > 0 ? `${vaultCount}` : null,
@@ -30,7 +38,7 @@ export default function Navigation({ activeTab, setActiveTab, vaultCount }) {
     },
     {
       id: 'avatar',
-      label: 'Avatar Studio',
+      label: 'Avatar',
       greek: 'Ταυτότητα',
       icon: User,
       badge: null,
@@ -38,8 +46,8 @@ export default function Navigation({ activeTab, setActiveTab, vaultCount }) {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-40 bg-[#0B0B0B]/95 backdrop-blur-lg border-t border-zinc-800/80 px-2 pt-1.5 pb-[max(env(safe-area-inset-bottom,8px),8px)]">
-      <div className="max-w-md mx-auto grid grid-cols-4 gap-1">
+    <nav className="fixed bottom-0 left-0 right-0 z-40 bg-[#0B0B0B]/95 backdrop-blur-lg border-t border-zinc-800/80 px-1 pt-1.5 pb-[max(env(safe-area-inset-bottom,8px),8px)]">
+      <div className="max-w-md mx-auto grid grid-cols-5 gap-0.5">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;

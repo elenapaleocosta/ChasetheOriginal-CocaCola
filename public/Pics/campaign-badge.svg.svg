@@ -45,11 +45,9 @@
   <!-- Top-Right Red Tactical Accent Border -->
   <path d="M 470 2 L 500 2 A 18 18 0 0 1 518 20 L 518 50" fill="none" stroke="#F40009" stroke-width="3" stroke-linecap="round"/>
 
-  <!-- Top Row: Status Dot & Product Specification -->
+  <!-- Top Row: Product Specification -->
   <g transform="translate(32, 34)">
-    <circle cx="0" cy="-4" r="3.5" fill="#F40009" filter="url(#cokeRedGlow)"/>
-    <circle cx="0" cy="-4" r="3" fill="#F40009"/>
-    <text x="14" y="0" class="badge-sub">COCA-COLA ORIGINAL TASTE</text>
+    <text x="0" y="0" class="badge-sub">COCA-COLA ORIGINAL TASTE</text>
   </g>
 
   <!-- Main Campaign Slogan: CHASE THE ORIGINAL -->

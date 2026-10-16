@@ -35,10 +35,6 @@ export default function GamemasterBanner({ onSelectLocation }) {
               alt="Κωνσταντίνος Αργυρός - The Gamemaster" 
               className="w-full h-full object-cover object-center filter brightness-105 group-hover:scale-105 transition-transform duration-300"
             />
-            {/* Live indicator dot (static) */}
-            <span className="absolute top-1.5 right-1.5 flex h-2 w-2">
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#F40009]" />
-            </span>
             <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/70 to-transparent py-0.5 px-0.5 text-center">
               <span className="text-[7.5px] font-mono font-bold tracking-tight text-white uppercase">
                 Gamemaster

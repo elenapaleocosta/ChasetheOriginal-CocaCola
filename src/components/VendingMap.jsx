@@ -231,12 +231,6 @@ export default function VendingMapSection({
 
       {/* Main Map Box */}
       <div className="relative w-full h-[360px] rounded-2xl overflow-hidden border border-zinc-800 bg-[#0B0B0B]">
-        {/* Top Floating Status Indicator */}
-        <div className="absolute top-3 left-3 z-[400] flex items-center gap-2 bg-[#0B0B0B]/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-zinc-800">
-          <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-          <span className="text-[11px] font-mono text-zinc-300">Live Network // 4 Hubs Online</span>
-        </div>
-
         <MapContainer
           center={[activeHub.lat, activeHub.lng]}
           zoom={12}

@@ -9,14 +9,17 @@ import AvatarStudio from './components/AvatarStudio';
 import OriginalMoment from './components/OriginalMoment';
 import { playTap } from './utils/audio';
 
-const STORAGE_KEY = 'coca_cola_chase_state_v2';
+const STORAGE_KEY = 'coca_cola_chase_state_v3';
 
 export default function App() {
   // Initial states with realistic starting demo balance
   const [availablePoints, setAvailablePoints] = useState(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
-      try { return JSON.parse(saved).availablePoints; } catch (e) {}
+      try { 
+        const pts = JSON.parse(saved).availablePoints;
+        if (typeof pts === 'number') return Math.max(1400, pts);
+      } catch (e) {}
     }
     return 1400; // Starting spendable points
   });
@@ -81,10 +84,11 @@ export default function App() {
 
   const [dispenseTargetItem, setDispenseTargetItem] = useState(null);
 
-  // Clean up legacy v1 storage on initial load
+  // Clean up legacy storage on initial load
   useEffect(() => {
     try {
       localStorage.removeItem('coca_cola_chase_state_v1');
+      localStorage.removeItem('coca_cola_chase_state_v2');
     } catch (e) {}
   }, []);
 
@@ -136,6 +140,16 @@ export default function App() {
     setVaultItems((prev) => [newItem, ...prev]);
   };
 
+  const handleRemoveFromVault = (catalogIdOrId, refundCost = 0) => {
+    setVaultItems((prev) => prev.filter((item) => item.catalogId !== catalogIdOrId && item.id !== catalogIdOrId));
+    if (refundCost > 0) {
+      setAvailablePoints((prev) => prev + refundCost);
+    }
+    if (catalogIdOrId === 'merch-bucket-hat' || catalogIdOrId === 'hat') {
+      setEquipped((eq) => ({ ...eq, hat: false }));
+    }
+  };
+
   const handleDispenseItem = (itemId) => {
     setVaultItems((prev) =>
       prev.map((item) => {
@@ -167,6 +181,7 @@ export default function App() {
     try {
       localStorage.removeItem(STORAGE_KEY);
       localStorage.removeItem('coca_cola_chase_state_v1');
+      localStorage.removeItem('coca_cola_chase_state_v2');
     } catch (e) {}
     setAvailablePoints(1400);
     setTotalPoints(2400);
@@ -243,6 +258,7 @@ export default function App() {
               userLevel={userLevel}
               vaultItems={vaultItems}
               onRedeemItem={handleRedeemItem}
+              onRemoveFromVault={handleRemoveFromVault}
               onDispenseItem={handleDispenseItem}
               onGoToAvatar={() => setActiveTab('avatar')}
               dispenseTargetItem={dispenseTargetItem}

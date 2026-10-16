@@ -9,7 +9,8 @@ import {
   ShieldCheck, 
   ExternalLink,
   ChevronRight,
-  ArrowRight
+  ArrowRight,
+  RotateCcw
 } from 'lucide-react';
 import { REWARDS_CATALOG } from '../data/campaignData';
 import { playTap, playSuccess, playNfcPing, playDispense } from '../utils/audio';
@@ -20,6 +21,7 @@ export default function RewardsVault({
   userLevel,
   vaultItems,
   onRedeemItem,
+  onRemoveFromVault,
   onDispenseItem,
   onGoToAvatar,
   dispenseTargetItem,
@@ -28,6 +30,13 @@ export default function RewardsVault({
   const [activeSubTab, setActiveSubTab] = useState('catalog'); // 'catalog' | 'vault'
   const [categoryFilter, setCategoryFilter] = useState('all'); // 'all' | 'merch' | 'tech' | 'vouchers'
   const [dispenseState, setDispenseState] = useState('idle'); // 'idle' | 'tapping' | 'verifying' | 'dispensed'
+
+  const handleResetItem = (catalogId, cost = 0) => {
+    playTap();
+    if (onRemoveFromVault) {
+      onRemoveFromVault(catalogId, cost);
+    }
+  };
 
   // Filter catalog items
   const filteredItems = REWARDS_CATALOG.filter((item) => {
@@ -234,12 +243,21 @@ export default function RewardsVault({
                     </div>
 
                     {isOwnedInVault ? (
-                      <button
-                        onClick={() => { playTap(); setActiveSubTab('vault'); }}
-                        className="py-1.5 px-3 rounded-lg bg-zinc-800 border border-zinc-700 text-zinc-300 font-mono text-[10px] font-bold uppercase hover:text-white transition-colors flex items-center gap-1"
-                      >
-                        <Check className="w-3 h-3 text-emerald-400" /> Στο Vault
-                      </button>
+                      <div className="flex items-center gap-1.5">
+                        <button
+                          onClick={() => { playTap(); setActiveSubTab('vault'); }}
+                          className="py-1.5 px-2.5 rounded-lg bg-zinc-800 border border-zinc-700 text-zinc-300 font-mono text-[10px] font-bold uppercase hover:text-white transition-colors flex items-center gap-1"
+                        >
+                          <Check className="w-3 h-3 text-emerald-400" /> Στο Vault
+                        </button>
+                        <button
+                          onClick={() => handleResetItem(item.id, item.cost)}
+                          className="py-1.5 px-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-700 text-zinc-400 hover:text-[#F40009] transition-all flex items-center gap-1 text-[9px] font-mono font-bold"
+                          title="Reset για να ξαναεξαργυρώσεις"
+                        >
+                          <RotateCcw className="w-2.5 h-2.5 text-[#F40009]" /> Reset
+                        </button>
+                      </div>
                     ) : isLockedByLevel ? (
                       <button
                         disabled
@@ -348,7 +366,7 @@ export default function RewardsVault({
                     </div>
 
                     {/* Action Button */}
-                    <div className="shrink-0">
+                    <div className="shrink-0 flex items-center gap-1.5">
                       {isReady ? (
                         <button
                           onClick={() => handleStartDispense(item)}
@@ -361,6 +379,14 @@ export default function RewardsVault({
                           <Check className="w-3.5 h-3.5" /> Dispensed
                         </div>
                       )}
+
+                      <button
+                        onClick={() => handleResetItem(item.catalogId || item.id, item.cost)}
+                        className="p-2 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-500 hover:text-[#F40009] hover:border-zinc-700 transition-colors"
+                        title="Αφαίρεση / Reset αντικειμένου για νέα δοκιμή"
+                      >
+                        <RotateCcw className="w-3.5 h-3.5" />
+                      </button>
                     </div>
 
                   </div>

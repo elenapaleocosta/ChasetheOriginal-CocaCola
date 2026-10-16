@@ -481,17 +481,6 @@ export default function RewardsVault({
                   </p>
                 </div>
 
-                {/* Wearable Digital Twin Notice */}
-                {dispenseTargetItem.wearableKey && (
-                  <div className="p-3 rounded-xl bg-[#F40009]/10 border border-[#F40009]/30 text-left flex items-center gap-2.5">
-                    <Sparkles className="w-4 h-4 text-[#F40009] shrink-0" />
-                    <div className="text-[11px] leading-snug">
-                      <strong className="text-white block font-mono">Digital Twin Unlocked!</strong>
-                      <span className="text-zinc-300">Το ψηφιακό wearable προστέθηκε αυτόματα στο Avatar Studio σου.</span>
-                    </div>
-                  </div>
-                )}
-
                 <div className="grid grid-cols-2 gap-2 pt-2">
                   <button
                     onClick={closeDispenseModal}

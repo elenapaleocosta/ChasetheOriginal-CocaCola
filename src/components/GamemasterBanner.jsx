@@ -28,19 +28,19 @@ export default function GamemasterBanner({ onSelectLocation }) {
 
         <div className="flex items-center gap-3.5 relative z-10">
           
-          {/* Portrait Container - Larger & More Cinematic */}
-          <div className="relative shrink-0 w-20 h-24 rounded-xl overflow-hidden bg-black border border-zinc-700/80 group-hover:border-[#F40009]/80 transition-colors shadow-md">
+          {/* Portrait Container - Featuring Authentic Argyros Campaign Photo */}
+          <div className="relative shrink-0 w-24 h-24 rounded-xl overflow-hidden bg-black border border-zinc-700/80 group-hover:border-[#F40009]/80 transition-colors shadow-md">
             <img 
-              src="/Pics/argyros-gamemaster-portrait.png" 
+              src="/Pics/argyros-portrait-crop.png" 
               alt="Κωνσταντίνος Αργυρός - The Gamemaster" 
-              className="w-full h-full object-cover object-top filter brightness-105 group-hover:scale-105 transition-transform duration-300"
+              className="w-full h-full object-cover object-center filter brightness-105 group-hover:scale-105 transition-transform duration-300"
             />
             {/* Live indicator dot (static) */}
             <span className="absolute top-1.5 right-1.5 flex h-2 w-2">
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#F40009]" />
             </span>
-            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/70 to-transparent py-1 px-0.5 text-center">
-              <span className="text-[8px] font-mono font-bold tracking-tight text-white uppercase">
+            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/70 to-transparent py-0.5 px-0.5 text-center">
+              <span className="text-[7.5px] font-mono font-bold tracking-tight text-white uppercase">
                 Gamemaster
               </span>
             </div>
@@ -83,7 +83,7 @@ export default function GamemasterBanner({ onSelectLocation }) {
         </div>
 
         {/* Carousel slide indicators */}
-        <div className="flex justify-center gap-1 mt-2.5">
+        <div className="flex justify-center gap-1 mt-3">
           {GAMEMASTER_CLUES.map((clue, idx) => (
             <button
               key={clue.id}
@@ -113,36 +113,33 @@ export default function GamemasterBanner({ onSelectLocation }) {
           >
             <button 
               onClick={() => setShowModal(false)}
-              className="absolute top-3.5 right-3.5 w-7 h-7 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white flex items-center justify-center text-xs"
+              className="absolute top-3.5 right-3.5 z-10 w-7 h-7 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white flex items-center justify-center text-xs"
             >
               ✕
             </button>
 
-            {/* Header with portrait */}
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-14 h-16 rounded-xl overflow-hidden border border-[#F40009]/60 shrink-0 bg-black">
-                <img 
-                  src="/Pics/argyros-gamemaster-portrait.png" 
-                  alt="Konstantinos Argyros" 
-                  className="w-full h-full object-cover object-top"
-                />
-              </div>
-              <div>
-                <span className="text-[10px] font-mono text-[#F40009] font-bold tracking-widest uppercase block">
-                  ΕΠΙΣΗΜΟ GAMEMASTER DISPATCH
-                </span>
-                <h3 className="text-base font-bold font-display uppercase tracking-tight text-white">
-                  Κωνσταντίνος Αργυρός
-                </h3>
-                <span className="text-[10px] text-zinc-400 font-mono">
-                  {currentClue.tag} // {currentClue.timeRemaining}
-                </span>
+            {/* Header with full widescreen photo of Argyros */}
+            <div className="relative w-full h-36 rounded-xl overflow-hidden border border-[#F40009]/40 mb-3 bg-black">
+              <img 
+                src="/Pics/argyros-gamemaster-portrait.png" 
+                alt="Konstantinos Argyros - The Gamemaster" 
+                className="w-full h-full object-cover object-center"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent flex items-end p-3">
+                <div>
+                  <span className="text-[9px] font-mono text-[#F40009] font-bold tracking-widest uppercase block">
+                    ΕΠΙΣΗΜΟ GAMEMASTER DISPATCH
+                  </span>
+                  <h3 className="text-base font-bold font-display uppercase tracking-tight text-white">
+                    Κωνσταντίνος Αργυρός
+                  </h3>
+                </div>
               </div>
             </div>
 
             {/* Quote Block */}
-            <div className="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 relative mb-4">
-              <div className="text-[13px] italic font-serif leading-relaxed text-zinc-200">
+            <div className="p-3.5 rounded-xl bg-zinc-900/90 border border-zinc-800 relative mb-3">
+              <div className="text-[12px] italic font-serif leading-relaxed text-zinc-200">
                 {currentClue.fullQuote}
               </div>
             </div>

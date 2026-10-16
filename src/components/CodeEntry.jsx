@@ -1,15 +1,13 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
   Sparkles, 
   CheckCircle2, 
   AlertCircle, 
   Zap, 
   HelpCircle, 
-  Gift, 
-  RotateCcw,
-  ArrowRight
+  Gift
 } from 'lucide-react';
-import { playSuccess, playScratchTick, playTap } from '../utils/audio';
+import { playSuccess, playTap } from '../utils/audio';
 
 export default function CodeEntry({ 
   onClaimCode, 
@@ -19,14 +17,7 @@ export default function CodeEntry({
   const [codeInput, setCodeInput] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const [successData, setSuccessData] = useState(null);
-  const [isScratchRevealed, setIsScratchRevealed] = useState(false);
   const [flash2xActive, setFlash2xActive] = useState(true); // Argyros Flash Drop active
-  const scratchCanvasRef = useRef(null);
-  const [scratchPercent, setScratchPercent] = useState(0);
-
-  // Suggested test codes for quick demo
-  const sampleCodes = ['A37-F92B', 'ORIG-87X9', 'COKE-2026', 'ARG-999X'];
-  const activeScratchCode = 'A37-F92B';
 
   // Format code input with auto uppercase and hyphen: XXX-XXXXX
   const handleInputChange = (e) => {
@@ -40,97 +31,6 @@ export default function CodeEntry({
     }
     setCodeInput(formatted);
     setErrorMsg('');
-  };
-
-  const handleUseSample = (code) => {
-    playTap();
-    setCodeInput(code);
-    setErrorMsg('');
-  };
-
-  // Scratch card canvas setup
-  useEffect(() => {
-    const canvas = scratchCanvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    const width = canvas.width;
-    const height = canvas.height;
-
-    // Fill with metallic silver scratch layer
-    const gradient = ctx.createLinearGradient(0, 0, width, height);
-    gradient.addColorStop(0, '#C0C0C0');
-    gradient.addColorStop(0.3, '#E8E8E8');
-    gradient.addColorStop(0.7, '#A8A8A8');
-    gradient.addColorStop(1, '#D4D4D4');
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, width, height);
-
-    // Add scratch texture dots & text
-    ctx.fillStyle = '#666666';
-    ctx.font = 'bold 11px monospace';
-    ctx.textAlign = 'center';
-    ctx.fillText('SCRATCH TO REVEAL', width / 2, height / 2 + 4);
-
-    let isDrawing = false;
-    let scratchedPixels = 0;
-
-    const scratch = (x, y) => {
-      ctx.globalCompositeOperation = 'destination-out';
-      ctx.beginPath();
-      ctx.arc(x, y, 16, 0, Math.PI * 2);
-      ctx.fill();
-      playScratchTick();
-
-      // Check scratched percentage approximately
-      scratchedPixels += 1;
-      if (scratchedPixels > 25 && !isScratchRevealed) {
-        setIsScratchRevealed(true);
-      }
-    };
-
-    const handleMouseDown = (e) => {
-      isDrawing = true;
-      const rect = canvas.getBoundingClientRect();
-      scratch(e.clientX - rect.left, e.clientY - rect.top);
-    };
-
-    const handleMouseMove = (e) => {
-      if (!isDrawing) return;
-      const rect = canvas.getBoundingClientRect();
-      scratch(e.clientX - rect.left, e.clientY - rect.top);
-    };
-
-    const handleMouseUp = () => { isDrawing = false; };
-
-    const handleTouchMove = (e) => {
-      e.preventDefault();
-      const rect = canvas.getBoundingClientRect();
-      const touch = e.touches[0];
-      scratch(touch.clientX - rect.left, touch.clientY - rect.top);
-    };
-
-    canvas.addEventListener('mousedown', handleMouseDown);
-    canvas.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mouseup', handleMouseUp);
-    canvas.addEventListener('touchmove', handleTouchMove, { passive: false });
-
-    return () => {
-      canvas.removeEventListener('mousedown', handleMouseDown);
-      canvas.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseup', handleMouseUp);
-      canvas.removeEventListener('touchmove', handleTouchMove);
-    };
-  }, []);
-
-  const handleRevealAll = () => {
-    playTap();
-    setIsScratchRevealed(true);
-    const canvas = scratchCanvasRef.current;
-    if (canvas) {
-      const ctx = canvas.getContext('2d');
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
-    setCodeInput(activeScratchCode);
   };
 
   const handleSubmit = (e) => {
@@ -213,87 +113,42 @@ export default function CodeEntry({
         </button>
       </div>
 
-      {/* Hero Visual Reference: Original Can & Scratch Showcase */}
+      {/* Hero Visual Reference: Physical Original Can Showcase */}
       <div className="relative rounded-2xl bg-gradient-to-b from-[#18181B] to-[#121212] border border-zinc-800 p-4 overflow-hidden shadow-lg">
-        
         {/* Subtle red spotlight glow */}
         <div className="absolute top-1/2 left-1/4 -translate-y-1/2 -translate-x-1/2 w-48 h-48 bg-[#F40009]/15 rounded-full blur-3xl pointer-events-none" />
 
         <div className="flex items-center gap-4 relative z-10">
-          
-          {/* Coca-Cola Can Image with Scratch Sticker */}
+          {/* Coca-Cola Can Image */}
           <div className="relative w-28 h-44 shrink-0 flex items-center justify-center">
             <img 
               src="/Pics/coca-cola-can-original.png" 
               alt="Coca-Cola Original Taste Can with Scratch Sticker" 
               className="max-h-full max-w-full object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)] filter contrast-105"
             />
-            {/* Live indicator dot over scratch area */}
-            <span className="absolute bottom-12 right-3 w-2.5 h-2.5 rounded-full bg-[#F40009] ring-2 ring-white animate-pulse" />
           </div>
 
-          {/* Interactive Scratch Validation Showcase */}
+          {/* Clean Info & Instruction */}
           <div className="flex-1 min-w-0 space-y-2">
             <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#F40009]/10 border border-[#F40009]/30 text-[9px] font-mono font-extrabold text-[#F40009] uppercase tracking-wider">
-              <Sparkles className="w-2.5 h-2.5" /> Scratch Can Sticker
+              <Sparkles className="w-2.5 h-2.5" /> Φυσικο Scratch Sticker
             </div>
 
             <h3 className="text-sm font-bold text-white tracking-tight leading-snug">
-              Ξύσε το ανάγλυφο sticker στο κουτάκι σου
+              Ξύσε το sticker στο κουτάκι σου
             </h3>
 
-            <p className="text-[11px] text-zinc-400 leading-snug">
-              Σύρε το δάχτυλο πάνω στο ασημί πλαίσιο για να αποκαλύψεις τον 8ψήφιο κωδικό:
+            <p className="text-[11px] text-zinc-400 leading-relaxed">
+              Βρες το ασημί sticker πάνω στο φυσικό σου κουτάκι <strong>Coca-Cola Original Taste</strong>, ξύσε το για να δεις τον 8ψήφιο κωδικό και πληκτρολόγησέ τον παρακάτω.
             </p>
 
-            {/* Interactive Scratch Area Box */}
-            <div className="relative w-full h-11 rounded-lg overflow-hidden border border-zinc-700 bg-black flex items-center justify-center">
-              {/* Underlying secret code */}
-              <div 
-                onClick={() => { playTap(); setCodeInput(activeScratchCode); }}
-                className="absolute inset-0 flex items-center justify-center font-mono font-black text-sm tracking-widest text-[#F40009] cursor-pointer hover:bg-zinc-900/40 transition-colors"
-                title="Πάτα για αντιγραφή στο πεδίο"
-              >
-                {activeScratchCode}
-              </div>
-
-              {/* Scratch canvas layer */}
-              <canvas
-                ref={scratchCanvasRef}
-                width={220}
-                height={44}
-                className="absolute inset-0 w-full h-full cursor-crosshair transition-opacity duration-300"
-                style={{ 
-                  opacity: isScratchRevealed ? 0 : 1, 
-                  pointerEvents: isScratchRevealed ? 'none' : 'auto',
-                  touchAction: 'none'
-                }}
-              />
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-lg bg-zinc-900 border border-zinc-800 text-[10px] font-mono">
+              <span className="text-[#F40009] font-bold">+100 PTS</span>
+              <span className="text-zinc-500">•</span>
+              <span className="text-zinc-300">Original Taste Only</span>
             </div>
-
-            {/* Quick Auto-Reveal or Copy CTA */}
-            <div className="flex items-center justify-between pt-1">
-              <button
-                onClick={handleRevealAll}
-                className="text-[10px] font-mono text-zinc-400 hover:text-white flex items-center gap-1 transition-colors"
-              >
-                <RotateCcw className="w-2.5 h-2.5" /> {isScratchRevealed ? 'Αντιγραφή: ' + activeScratchCode : 'Αυτόματη Αποκάλυψη'}
-              </button>
-
-              {isScratchRevealed && (
-                <button
-                  onClick={() => { playTap(); setCodeInput(activeScratchCode); }}
-                  className="px-2 py-0.5 rounded bg-zinc-800 text-[9px] font-mono font-bold text-white hover:bg-zinc-700 transition-colors flex items-center gap-1"
-                >
-                  Εισαγωγή <ArrowRight className="w-2.5 h-2.5 text-[#F40009]" />
-                </button>
-              )}
-            </div>
-
           </div>
-
         </div>
-
       </div>
 
       {/* Code Input & Validation Form (The Action Engine) */}
@@ -348,34 +203,6 @@ export default function CodeEntry({
         >
           {flash2xActive ? 'VALIDATE & CLAIM +200 PTS (2X FLASH)' : 'VALIDATE & CLAIM +100 PTS'}
         </button>
-
-        {/* Demo Fast Fill Chips */}
-        <div className="pt-2 border-t border-zinc-800/80">
-          <div className="flex items-center justify-between text-[10px] font-mono text-zinc-500 mb-1.5">
-            <span>Δοκιμαστικοί Κωδικοί (Demo):</span>
-            <span>Click to fill</span>
-          </div>
-          <div className="flex flex-wrap gap-1.5">
-            {sampleCodes.map((c) => {
-              const isUsed = claimedCodes.some(x => x.code === c);
-              return (
-                <button
-                  key={c}
-                  disabled={isUsed}
-                  onClick={() => handleUseSample(c)}
-                  className={`px-2.5 py-1 rounded text-[10px] font-mono font-bold tracking-wider transition-all ${
-                    isUsed 
-                      ? 'bg-zinc-900 text-zinc-600 line-through cursor-not-allowed border border-zinc-800/40' 
-                      : 'bg-zinc-900 border border-zinc-700/80 text-zinc-300 hover:text-white hover:border-[#F40009]'
-                  }`}
-                >
-                  {c} {isUsed ? '(Claimed)' : ''}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
       </div>
 
       {/* Claimed History List */}

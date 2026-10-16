@@ -58,21 +58,6 @@ export default function AvatarStudio({
 
   return (
     <div className="w-full space-y-4">
-      
-      {/* Top Bar: Meta Avatar Sync Ready & Hunter Status */}
-      <div className="flex items-center justify-between p-2.5 rounded-xl bg-[#141414] border border-zinc-800 text-xs">
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="font-mono font-bold text-white text-[11px] uppercase tracking-wider">
-            Meta Avatar Sync Ready
-          </span>
-        </div>
-
-        <span className="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-700/80 text-[10px] font-mono text-zinc-300">
-          Hunter Level {userLevel}
-        </span>
-      </div>
-
       {/* Main Avatar Stage & Layering Canvas Container */}
       <div className="relative w-full rounded-3xl bg-gradient-to-b from-[#18181B] via-[#121212] to-[#0A0A0A] border border-zinc-800 p-4 overflow-hidden shadow-2xl">
         

@@ -6,8 +6,8 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { playTap } from '../utils/audio';
 
-// 1. ΣΤΑΤΙΚΑ BADGES (ΧΩΡΙΣ PULSE / ΧΩΡΙΣ KEYFRAMES)
-const createStaticPin = (isSelected, hubCode) =>
+// 1. ΣΤΑΤΙΚΑ BADGES (ΧΩΡΙΣ PULSE / ΧΩΡΙΣ KEYFRAMES / ΧΩΡΙΣ ΑΡΙΘΜΗΣΗ)
+const createStaticPin = (isSelected) =>
   L.divIcon({
     className: 'static-coke-pin',
     html: `
@@ -22,8 +22,8 @@ const createStaticPin = (isSelected, hubCode) =>
       ">
         <!-- Κεντρικό συμπαγές Badge -->
         <div style="
-          width: 38px;
-          height: 38px;
+          width: 36px;
+          height: 36px;
           background: #F40009;
           border: 2px solid #FFFFFF;
           border-radius: 50%;
@@ -38,24 +38,10 @@ const createStaticPin = (isSelected, hubCode) =>
             <circle cx="12" cy="10" r="3"></circle>
           </svg>
         </div>
-        <!-- Hub Tag -->
-        <div style="
-          margin-top: 3px;
-          background: #0B0B0B;
-          border: 1px solid #27272A;
-          color: #FFFFFF;
-          font-family: monospace;
-          font-size: 9px;
-          font-weight: 800;
-          padding: 1px 5px;
-          border-radius: 4px;
-          letter-spacing: 0.5px;
-          white-space: nowrap;
-        ">${hubCode}</div>
       </div>
     `,
-    iconSize: [38, 52],
-    iconAnchor: [19, 26],
+    iconSize: [36, 36],
+    iconAnchor: [18, 18],
   });
 
 // 2. MOCK HUBS DATA (ΑΘΗΝΑ)
@@ -63,9 +49,8 @@ export const HUBS = [
   {
     id: 'hub-01',
     code: 'HUB-01',
-    name: 'VM #01 – Σταθμός Μετρό Σύνταγμα',
+    name: 'Σταθμός Μετρό Σύνταγμα',
     subLocation: 'Αθήνα (Κεντρική Αποβάθρα)',
-    temp: '3°C Ice-Cold',
     lat: 37.9753,
     lng: 23.7361,
     stock: [
@@ -80,9 +65,8 @@ export const HUBS = [
   {
     id: 'hub-04',
     code: 'HUB-04',
-    name: 'VM #04 – Μαρίνα Φλοίσβου',
+    name: 'Μαρίνα Φλοίσβου',
     subLocation: 'Παλαιό Φάληρο (Κεντρικός Πεζόδρομος)',
-    temp: '2°C Ice-Cold',
     lat: 37.9288,
     lng: 23.6841,
     stock: [
@@ -96,9 +80,8 @@ export const HUBS = [
   {
     id: 'hub-03',
     code: 'HUB-03',
-    name: 'VM #03 – Πλατεία Μοναστηρακίου',
+    name: 'Πλατεία Μοναστηρακίου',
     subLocation: 'Μοναστηράκι (Έξοδος Ερμού)',
-    temp: '3°C Ice-Cold',
     lat: 37.9765,
     lng: 23.7258,
     stock: [
@@ -111,9 +94,8 @@ export const HUBS = [
   {
     id: 'hub-02',
     code: 'HUB-02',
-    name: 'VM #02 – The Mall Athens',
+    name: 'The Mall Athens',
     subLocation: 'Μαρούσι (Food Court Επίπεδο 3)',
-    temp: '3°C Ice-Cold',
     lat: 38.0449,
     lng: 23.7915,
     stock: [
@@ -175,7 +157,6 @@ export default function VendingMapSection({
         id: activeHub.id,
         name: activeHub.name,
         area: activeHub.subLocation,
-        temp: activeHub.temp,
         status: 'Online / Tap-Ready',
         inventory: activeHub.stock,
       });
@@ -250,7 +231,7 @@ export default function VendingMapSection({
             <Marker
               key={hub.id}
               position={[hub.lat, hub.lng]}
-              icon={createStaticPin(activeHub.id === hub.id, hub.code)}
+              icon={createStaticPin(activeHub.id === hub.id)}
               eventHandlers={{
                 click: () => handleSelectHub(hub),
               }}
@@ -269,7 +250,7 @@ export default function VendingMapSection({
             <div>
               <h4 className="text-sm font-extrabold text-white tracking-tight">{activeHub.name}</h4>
               <p className="text-xs text-zinc-400 font-mono mt-0.5">
-                {activeHub.subLocation} <span className="text-[#F40009] font-bold">// {activeHub.temp}</span>
+                {activeHub.subLocation}
               </p>
             </div>
           </div>

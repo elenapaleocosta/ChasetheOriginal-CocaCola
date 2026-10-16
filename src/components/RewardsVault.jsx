@@ -428,7 +428,7 @@ export default function RewardsVault({
                     Εξαγωγή {dispenseTargetItem.title}...
                   </h3>
                   <p className="text-xs text-zinc-400 font-mono">
-                    Έλεγχος αισθητήρα βάρους & ξεκλείδωμα θυρίδας 3°C
+                    Έλεγχος αισθητήρα βάρους & ξεκλείδωμα θυρίδας παραλαβής
                   </p>
                 </div>
               </div>

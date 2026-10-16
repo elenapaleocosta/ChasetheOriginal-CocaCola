@@ -9,7 +9,7 @@ import AvatarStudio from './components/AvatarStudio';
 import OriginalMoment from './components/OriginalMoment';
 import { playTap } from './utils/audio';
 
-const STORAGE_KEY = 'coca_cola_chase_state_v3';
+const STORAGE_KEY = 'coca_cola_chase_state_v4';
 
 export default function App() {
   // Initial states with realistic starting demo balance
@@ -18,10 +18,10 @@ export default function App() {
     if (saved) {
       try { 
         const pts = JSON.parse(saved).availablePoints;
-        if (typeof pts === 'number') return Math.max(1400, pts);
+        if (typeof pts === 'number') return Math.max(2000, pts);
       } catch (e) {}
     }
-    return 1400; // Starting spendable points
+    return 2500; // Starting spendable points
   });
 
   const [totalPoints, setTotalPoints] = useState(() => {
@@ -29,7 +29,7 @@ export default function App() {
     if (saved) {
       try { return JSON.parse(saved).totalPoints; } catch (e) {}
     }
-    return 2400; // Starting all-time cumulative points
+    return 3500; // Starting all-time cumulative points
   });
 
   const [activeTab, setActiveTab] = useState('map'); // 'map' | 'code' | 'moments' | 'rewards' | 'avatar'
@@ -46,18 +46,7 @@ export default function App() {
     ];
   });
 
-  const [vaultItems, setVaultItems] = useState(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      try { 
-        const items = JSON.parse(saved).vaultItems;
-        if (Array.isArray(items)) {
-          return items.filter((v) => v.catalogId !== 'merch-bucket-hat');
-        }
-      } catch (e) {}
-    }
-    return [];
-  });
+  const [vaultItems, setVaultItems] = useState([]);
 
   // Avatar state
   const [gender, setGender] = useState(() => {
@@ -68,28 +57,22 @@ export default function App() {
     return 'male';
   });
 
-  const [equipped, setEquipped] = useState(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      try { 
-        const eq = JSON.parse(saved).equipped;
-        if (eq) return { ...eq, hat: false };
-      } catch (e) {}
-    }
-    return {
-      hoodie: true,
-      hat: false,
-    };
+  const [equipped, setEquipped] = useState({
+    hoodie: true,
+    hat: false,
   });
 
   const [dispenseTargetItem, setDispenseTargetItem] = useState(null);
 
-  // Clean up legacy storage on initial load
+  // Force clean state on initial mount: wipe bucket hat and legacy storages
   useEffect(() => {
     try {
-      localStorage.removeItem('coca_cola_chase_state_v1');
-      localStorage.removeItem('coca_cola_chase_state_v2');
+      localStorage.clear();
     } catch (e) {}
+    setVaultItems([]);
+    setEquipped({ hoodie: true, hat: false });
+    setAvailablePoints(2500);
+    setTotalPoints(3500);
   }, []);
 
   // Save state changes
@@ -179,12 +162,10 @@ export default function App() {
   const handleResetDemo = () => {
     playTap();
     try {
-      localStorage.removeItem(STORAGE_KEY);
-      localStorage.removeItem('coca_cola_chase_state_v1');
-      localStorage.removeItem('coca_cola_chase_state_v2');
+      localStorage.clear();
     } catch (e) {}
-    setAvailablePoints(1400);
-    setTotalPoints(2400);
+    setAvailablePoints(2500);
+    setTotalPoints(3500);
     setClaimedCodes([
       { code: 'ORIG-100A', points: 100, date: '16:42' },
       { code: 'ORIG-100B', points: 100, date: '17:15' },

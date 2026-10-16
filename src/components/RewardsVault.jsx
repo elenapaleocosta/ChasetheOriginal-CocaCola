@@ -176,6 +176,16 @@ export default function RewardsVault({
                     </span>
 
                     <div className="flex items-center gap-1">
+                      {isOwnedInVault && (
+                        <span 
+                          onClick={() => { playTap(); setActiveSubTab('vault'); }}
+                          className="px-1.5 py-0.5 rounded bg-emerald-950/40 text-emerald-400 border border-emerald-900/60 text-[9px] font-mono font-bold flex items-center gap-1 cursor-pointer hover:bg-emerald-900/40"
+                          title="Δες το στο Vault"
+                        >
+                          <Check className="w-2.5 h-2.5" /> Στο Vault
+                        </span>
+                      )}
+
                       {isLockedByLevel ? (
                         <span className="px-2 py-0.5 rounded bg-red-950/40 text-red-400 border border-red-900/60 text-[9px] font-mono font-bold flex items-center gap-1">
                           <Lock className="w-2.5 h-2.5" /> Level {item.requiredLevel}
@@ -242,40 +252,17 @@ export default function RewardsVault({
                       </span>
                     </div>
 
-                    {isOwnedInVault ? (
-                      <div className="flex items-center gap-1.5">
-                        <button
-                          onClick={() => { playTap(); setActiveSubTab('vault'); }}
-                          className="py-1.5 px-2.5 rounded-lg bg-zinc-800 border border-zinc-700 text-zinc-300 font-mono text-[10px] font-bold uppercase hover:text-white transition-colors flex items-center gap-1"
-                        >
-                          <Check className="w-3 h-3 text-emerald-400" /> Στο Vault
-                        </button>
-                        <button
-                          onClick={() => handleResetItem(item.id, item.cost)}
-                          className="py-1.5 px-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-700 text-zinc-400 hover:text-[#F40009] transition-all flex items-center gap-1 text-[9px] font-mono font-bold"
-                          title="Reset για να ξαναεξαργυρώσεις"
-                        >
-                          <RotateCcw className="w-2.5 h-2.5 text-[#F40009]" /> Reset
-                        </button>
-                      </div>
-                    ) : isLockedByLevel ? (
+                    {isLockedByLevel ? (
                       <button
                         disabled
                         className="py-1.5 px-3 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-600 font-mono text-[10px] font-bold uppercase cursor-not-allowed flex items-center gap-1"
                       >
                         <Lock className="w-3 h-3" /> Κλειδωμένο
                       </button>
-                    ) : !hasEnoughPoints ? (
-                      <button
-                        disabled
-                        className="py-1.5 px-3 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-500 font-mono text-[10px] font-bold uppercase cursor-not-allowed"
-                      >
-                        Έλλειψη PTS
-                      </button>
                     ) : (
                       <button
                         onClick={() => handlePurchase(item)}
-                        className="py-1.5 px-3.5 rounded-lg bg-[#F40009] hover:bg-[#d60008] text-white font-mono text-[10px] font-bold uppercase tracking-wider transition-all shadow-[0_0_12px_rgba(244,0,9,0.3)]"
+                        className="py-1.5 px-3.5 rounded-lg bg-[#F40009] hover:bg-[#d60008] text-white font-mono text-[10px] font-bold uppercase tracking-wider transition-all shadow-[0_0_12px_rgba(244,0,9,0.3)] active:scale-95"
                       >
                         Αποκτηση
                       </button>

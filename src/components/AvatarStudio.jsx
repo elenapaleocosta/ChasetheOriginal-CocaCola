@@ -104,7 +104,11 @@ export default function AvatarStudio({
               Male
             </button>
             <button
-              onClick={() => { playTap(); setGender('female'); }}
+              onClick={() => { 
+                playTap(); 
+                setGender('female'); 
+                setEquipped(prev => ({ ...prev, hat: false }));
+              }}
               className={`px-3 py-1 rounded-lg text-[10px] font-mono font-bold uppercase transition-all ${
                 gender === 'female'
                   ? 'bg-[#F40009] text-white shadow-[0_0_8px_#F40009]'
@@ -148,25 +152,6 @@ export default function AvatarStudio({
               />
             </div>
 
-            {/* Optional Head Layer for female if bucket hat is equipped */}
-            {gender === 'female' && equipped.hat && (
-              <div 
-                className="absolute z-20 pointer-events-none transition-all duration-300 ease-out flex items-center justify-center"
-                style={{
-                  top: '4.5%',
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  width: '44%',
-                }}
-              >
-                <img
-                  src="/Pics/avatar-wearable-hat-transparent.png"
-                  alt="Original Bucket Hat Layer"
-                  className="w-full h-auto object-contain filter drop-shadow-[0_6px_12px_rgba(0,0,0,0.8)] animate-fadeIn"
-                />
-              </div>
-            )}
-
           </div>
 
         </div>
@@ -179,7 +164,7 @@ export default function AvatarStudio({
             <span className="text-white font-bold">
               Base ({gender})
               {equipped.hoodie && ' + Hoodie'}
-              {equipped.hat && ' + Hat'}
+              {gender === 'male' && equipped.hat && ' + Hat'}
             </span>
           </div>
 
@@ -207,45 +192,49 @@ export default function AvatarStudio({
           </div>
 
           <span className="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-[9px] font-mono text-zinc-400">
-            {Object.values(equipped).filter(Boolean).length}/2 Equipped
+            {gender === 'female' 
+              ? `${equipped.hoodie ? 1 : 0}/1 Equipped`
+              : `${Object.values(equipped).filter(Boolean).length}/2 Equipped`}
           </span>
         </div>
 
         {/* Wearables Grid */}
-        <div className="grid grid-cols-2 gap-2.5">
+        <div className={`grid gap-2.5 ${gender === 'female' ? 'grid-cols-1 max-w-sm mx-auto' : 'grid-cols-2'}`}>
           
-          {/* Wearable 1: Bucket Hat */}
-          <div className={`p-3 rounded-xl border transition-all ${
-            equipped.hat 
-              ? 'bg-zinc-900/90 border-[#F40009]/80 shadow-[0_0_12px_rgba(244,0,9,0.2)]' 
-              : 'bg-zinc-900/40 border-zinc-800/80 hover:border-zinc-700'
-          }`}>
-            <div className="w-full h-20 rounded-lg bg-black/60 border border-zinc-800 p-1 flex items-center justify-center mb-2">
-              <img 
-                src="/Pics/avatar-wearable-hat-transparent.png" 
-                alt="Bucket Hat" 
-                className="max-h-full max-w-full object-contain filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]"
-              />
-            </div>
+          {/* Wearable 1: Bucket Hat (Only available for male avatar) */}
+          {gender === 'male' && (
+            <div className={`p-3 rounded-xl border transition-all ${
+              equipped.hat 
+                ? 'bg-zinc-900/90 border-[#F40009]/80 shadow-[0_0_12px_rgba(244,0,9,0.2)]' 
+                : 'bg-zinc-900/40 border-zinc-800/80 hover:border-zinc-700'
+            }`}>
+              <div className="w-full h-20 rounded-lg bg-black/60 border border-zinc-800 p-1 flex items-center justify-center mb-2">
+                <img 
+                  src="/Pics/avatar-wearable-hat-transparent.png" 
+                  alt="Bucket Hat" 
+                  className="max-h-full max-w-full object-contain filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]"
+                />
+              </div>
 
-            <div className="text-[11px] font-bold text-white truncate">
-              Original Bucket Hat
-            </div>
-            <div className="text-[9px] font-mono text-zinc-500 mb-2">
-              Head Layer // z-20
-            </div>
+              <div className="text-[11px] font-bold text-white truncate">
+                Original Bucket Hat
+              </div>
+              <div className="text-[9px] font-mono text-zinc-500 mb-2">
+                Head Layer // z-20
+              </div>
 
-            <button
-              onClick={() => toggleEquip('hat')}
-              className={`w-full py-1.5 rounded-lg text-[10px] font-mono font-bold uppercase transition-all ${
-                equipped.hat
-                  ? 'bg-[#F40009] text-white shadow-sm'
-                  : 'bg-zinc-800 text-zinc-300 hover:bg-zinc-700 hover:text-white'
-              }`}
-            >
-              {equipped.hat ? '✓ Equipped' : 'Equip Hat'}
-            </button>
-          </div>
+              <button
+                onClick={() => toggleEquip('hat')}
+                className={`w-full py-1.5 rounded-lg text-[10px] font-mono font-bold uppercase transition-all ${
+                  equipped.hat
+                    ? 'bg-[#F40009] text-white shadow-sm'
+                    : 'bg-zinc-800 text-zinc-300 hover:bg-zinc-700 hover:text-white'
+                }`}
+              >
+                {equipped.hat ? '✓ Equipped' : 'Equip Hat'}
+              </button>
+            </div>
+          )}
 
           {/* Wearable 2: Tour Hoodie */}
           <div className={`p-3 rounded-xl border transition-all ${

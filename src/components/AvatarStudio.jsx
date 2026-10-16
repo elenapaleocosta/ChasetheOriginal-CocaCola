@@ -220,11 +220,11 @@ export default function AvatarStudio({
               ? 'bg-zinc-900/90 border-[#F40009]/80 shadow-[0_0_12px_rgba(244,0,9,0.2)]' 
               : 'bg-zinc-900/40 border-zinc-800/80 hover:border-zinc-700'
           }`}>
-            <div className="w-full h-20 rounded-lg bg-black border border-zinc-800 p-1 flex items-center justify-center mb-2">
+            <div className="w-full h-20 rounded-lg bg-black/60 border border-zinc-800 p-1 flex items-center justify-center mb-2">
               <img 
-                src="/Pics/avatar-wearable-hat.png" 
+                src="/Pics/avatar-wearable-hat-transparent.png" 
                 alt="Bucket Hat" 
-                className="max-h-full max-w-full object-contain"
+                className="max-h-full max-w-full object-contain filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]"
               />
             </div>
 
@@ -253,11 +253,11 @@ export default function AvatarStudio({
               ? 'bg-zinc-900/90 border-[#F40009]/80 shadow-[0_0_12px_rgba(244,0,9,0.2)]' 
               : 'bg-zinc-900/40 border-zinc-800/80 hover:border-zinc-700'
           }`}>
-            <div className="w-full h-20 rounded-lg bg-black border border-zinc-800 p-1 flex items-center justify-center mb-2">
+            <div className="w-full h-20 rounded-lg bg-black/60 border border-zinc-800 p-1 flex items-center justify-center mb-2">
               <img 
-                src="/Pics/avatar-wearable-hoodie.png" 
+                src="/Pics/avatar-wearable-hoodie-transparent.png" 
                 alt="Tour Hoodie" 
-                className="max-h-full max-w-full object-contain"
+                className="max-h-full max-w-full object-contain filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]"
               />
             </div>
 

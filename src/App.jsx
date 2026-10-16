@@ -58,7 +58,7 @@ export default function App() {
         token: 'NFC-9982-ORIG',
         date: 'Σήμερα, 18:20',
         wearableKey: 'hat',
-        image: '/Pics/avatar-wearable-hat.png',
+        image: '/Pics/avatar-wearable-hat-transparent.png',
       },
     ];
   });
@@ -178,7 +178,7 @@ export default function App() {
         token: 'NFC-9982-ORIG',
         date: 'Σήμερα, 18:20',
         wearableKey: 'hat',
-        image: '/Pics/avatar-wearable-hat.png',
+        image: '/Pics/avatar-wearable-hat-transparent.png',
       },
     ]);
     setGender('male');

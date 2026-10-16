@@ -179,30 +179,32 @@ export default function RewardsVault({
                     </div>
                   </div>
 
-                  {/* Asset Preview Area */}
-                  <div className="relative w-full h-28 rounded-xl bg-black/60 border border-zinc-800/80 mb-3 flex items-center justify-center p-2 overflow-hidden">
-                    
+                  {/* Asset Preview Area - Background-free floating presentation */}
+                  <div className="relative w-full h-32 rounded-xl bg-gradient-to-b from-zinc-900/50 via-zinc-950/80 to-black border border-zinc-800/80 mb-3 flex items-center justify-center p-3 overflow-hidden">
+                    {/* Subtle spotlight glow behind transparent gift */}
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05)_0%,transparent_75%)] pointer-events-none" />
+
                     {/* Partner SVG for Vouchers */}
                     {item.partnerSvg ? (
-                      <div className="w-20 h-20 flex items-center justify-center">
+                      <div className="w-24 h-24 flex items-center justify-center relative z-10">
                         <img 
                           src={item.partnerSvg} 
                           alt={item.title} 
-                          className="max-h-full max-w-full object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]"
+                          className="max-h-full max-w-full object-contain filter drop-shadow-[0_6px_14px_rgba(0,0,0,0.7)] group-hover:scale-105 transition-transform duration-300"
                         />
                       </div>
                     ) : (
-                      /* Merch / Tech Photo */
+                      /* Merch / Tech Photo with transparent background */
                       <img 
                         src={item.image} 
                         alt={item.title} 
-                        className="max-h-full max-w-full object-contain filter drop-shadow-[0_6px_14px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform"
+                        className="max-h-full max-w-full object-contain relative z-10 filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.85)] group-hover:scale-105 transition-transform duration-300"
                       />
                     )}
 
                     {/* Stamped Argyros Signature Overlay over Exclusive Merch */}
                     {item.hasSignature && (
-                      <div className="absolute bottom-1 right-1 w-24 h-9 pointer-events-none opacity-90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+                      <div className="absolute bottom-1.5 right-1.5 w-24 h-9 pointer-events-none opacity-90 drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)] z-20">
                         <img 
                           src="/Pics/argyros-signature.svg" 
                           alt="Official Signature Κωνσταντίνος Αργυρός" 

@@ -297,7 +297,7 @@ export const REWARDS_CATALOG = [
     hasSignature: true,
     tag: "DIGITAL TWIN // WEARABLE",
     description: "Heavyweight black cotton με κόκκινη ανάγλυφη ραφή 'Original'. Ξεκλειδώνει αυτόματα και ψηφιακό wearable στο Avatar Studio!",
-    image: "/Pics/avatar-wearable-hat.png",
+    image: "/Pics/avatar-wearable-hat-transparent.png",
     wearableKey: "hat",
   },
   {
@@ -311,7 +311,7 @@ export const REWARDS_CATALOG = [
     hasSignature: true,
     tag: "DIGITAL TWIN // WEARABLE",
     description: "Original Taste red and black fleece. Επίσημη συνεργασία. Ξεκλειδώνει αυτόματα και ψηφιακό wearable στο Avatar Studio!",
-    image: "/Pics/avatar-wearable-hoodie.png",
+    image: "/Pics/avatar-wearable-hoodie-transparent.png",
     wearableKey: "hoodie",
   },
 
@@ -327,7 +327,7 @@ export const REWARDS_CATALOG = [
     hasSignature: false,
     tag: "PREMIUM TECH",
     description: "Ultra-portable αδιάβροχο ηχείο Bluetooth με rich original ήχο και integrated carabiner.",
-    image: "/Pics/jbl-cocacola.webp",
+    image: "/Pics/jbl-cocacola-transparent.png",
     wearableKey: null,
   },
 

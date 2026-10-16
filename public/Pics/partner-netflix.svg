@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="100%" height="100%">
+  <rect width="160" height="160" rx="24" fill="#141414" stroke="#262626" stroke-width="1.5"/>
+  <!-- Official Netflix Ribbon Icon 'N' -->
+  <g transform="translate(56, 42)">
+    <path d="M0 0 H14 V76 H0 Z" fill="#B81D24"/>
+    <path d="M34 0 H48 V76 H34 Z" fill="#B81D24"/>
+    <path d="M0 0 H14 L48 76 H34 Z" fill="#E50914"/>
+  </g>
+  <text x="80" y="140" text-anchor="middle" fill="#A1A1AA" font-family="-apple-system, sans-serif" font-size="10" font-weight="700" letter-spacing="2">PASS</text>
+</svg>

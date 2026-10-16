@@ -54,7 +54,28 @@ export default function AvatarStudio({
     }
   };
 
-  const baseImage = gender === 'male' ? '/Pics/avatar-base.png' : '/Pics/avatar-base-female.png';
+  const getAvatarImage = () => {
+    if (gender === 'male') {
+      if (equipped.hoodie && equipped.hat) {
+        return '/Pics/avatar-both.jpg';
+      }
+      if (equipped.hoodie) {
+        return '/Pics/avatar-male-wear-hoodie.jpg';
+      }
+      if (equipped.hat) {
+        return '/Pics/avatar-male-wear-buckethat.jpg';
+      }
+      return '/Pics/avatar-base.png';
+    } else {
+      // female avatar
+      if (equipped.hoodie) {
+        return '/Pics/avatar-female-wear-hoodie.jpg';
+      }
+      return '/Pics/avatar-base-female.png';
+    }
+  };
+
+  const currentAvatarImage = getAvatarImage();
 
   return (
     <div className="w-full space-y-4">
@@ -108,7 +129,7 @@ export default function AvatarStudio({
 
         </div>
 
-        {/* THE LAYERING CANVAS (Strict Prompt Architecture: z-0, z-10, z-20) */}
+        {/* THE AVATAR CANVAS */}
         <div className="relative w-full h-[400px] flex items-center justify-center overflow-hidden my-2">
           
           <div 
@@ -117,43 +138,25 @@ export default function AvatarStudio({
             }`}
           >
 
-            {/* BASE LAYER (z-0): Selected Avatar Base */}
+            {/* AVATAR RENDERED IMAGE */}
             <div className="absolute inset-0 z-0 flex items-center justify-center">
               <img
-                src={baseImage}
-                alt={`${gender} avatar base`}
-                className="max-h-full max-w-full object-contain filter contrast-105 drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)]"
+                key={currentAvatarImage}
+                src={currentAvatarImage}
+                alt={`${gender} avatar`}
+                className="max-h-full max-w-full object-contain filter contrast-105 drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)] animate-fadeIn"
               />
             </div>
 
-            {/* TORSO LAYER (z-10): avatar-wearable-hoodie.png */}
-            {equipped.hoodie && (
-              <div 
-                className="absolute z-10 pointer-events-none transition-all duration-300 ease-out flex items-center justify-center"
-                style={{
-                  top: gender === 'male' ? '22%' : '24.5%',
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  width: gender === 'male' ? '68%' : '64%',
-                }}
-              >
-                <img
-                  src="/Pics/avatar-wearable-hoodie-transparent.png"
-                  alt="Coca-Cola Hoodie Layer"
-                  className="w-full h-auto object-contain filter drop-shadow-[0_8px_16px_rgba(0,0,0,0.7)] animate-fadeIn"
-                />
-              </div>
-            )}
-
-            {/* HEAD LAYER (z-20): avatar-wearable-hat.png */}
-            {equipped.hat && (
+            {/* Optional Head Layer for female if bucket hat is equipped */}
+            {gender === 'female' && equipped.hat && (
               <div 
                 className="absolute z-20 pointer-events-none transition-all duration-300 ease-out flex items-center justify-center"
                 style={{
-                  top: gender === 'male' ? '3.5%' : '4.5%',
+                  top: '4.5%',
                   left: '50%',
                   transform: 'translateX(-50%)',
-                  width: gender === 'male' ? '46%' : '44%',
+                  width: '44%',
                 }}
               >
                 <img

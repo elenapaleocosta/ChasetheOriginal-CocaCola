@@ -186,12 +186,8 @@ export default function App() {
       
       {/* Top Sticky Header */}
       <Header
-        availablePoints={availablePoints}
-        totalPoints={totalPoints}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
-        gender={gender}
-        equipped={equipped}
       />
 
       {/* Main Tab Content Container (Mobile-first centered max-w-md layout) */}

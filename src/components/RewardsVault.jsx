@@ -72,6 +72,26 @@ export default function RewardsVault({
   return (
     <div className="w-full space-y-4">
       
+      {/* Spendable Balance Banner in Vault */}
+      <div className="flex items-center justify-between p-3 rounded-2xl bg-[#141414] border border-zinc-800 shadow-sm">
+        <div>
+          <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 block">
+            Διαθεσιμο Υπολοιπο Vault
+          </span>
+          <div className="text-lg font-bold font-mono text-[#F40009]">
+            {availablePoints.toLocaleString()} <span className="text-xs text-zinc-400 font-normal">PTS</span>
+          </div>
+        </div>
+        <div className="text-right">
+          <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 block">
+            Hunter Status
+          </span>
+          <div className="text-xs font-bold font-mono text-white">
+            Level {userLevel} // {totalPoints.toLocaleString()} XP
+          </div>
+        </div>
+      </div>
+
       {/* Sub-tab Navigation (Catalog vs User Vault) */}
       <div className="grid grid-cols-2 p-1 rounded-xl bg-zinc-900 border border-zinc-800">
         <button

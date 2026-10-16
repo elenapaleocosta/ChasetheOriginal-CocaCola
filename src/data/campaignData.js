@@ -341,7 +341,7 @@ export const REWARDS_CATALOG = [
     hasSignature: false,
     tag: "PREMIUM TECH",
     description: "Ultra-portable αδιάβροχο ηχείο Bluetooth με rich original ήχο και integrated carabiner.",
-    image: "/Pics/vending-machine-photo.png",
+    image: "/Pics/jbl-cocacola.webp",
     wearableKey: null,
   },
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, KeyRound, Gift, User, Radio } from 'lucide-react';
+import { MapPin, KeyRound, Gift } from 'lucide-react';
 import { playTap } from '../utils/audio';
 
 export default function Navigation({ activeTab, setActiveTab, vaultCount }) {
@@ -28,18 +28,11 @@ export default function Navigation({ activeTab, setActiveTab, vaultCount }) {
       badge: vaultCount > 0 ? `${vaultCount}` : null,
       badgeColor: 'bg-[#F40009]',
     },
-    {
-      id: 'avatar',
-      label: 'Avatar Studio',
-      greek: 'Ταυτότητα',
-      icon: User,
-      badge: null,
-    },
   ];
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-40 bg-[#0B0B0B]/95 backdrop-blur-lg border-t border-zinc-800/80 px-2 pt-1.5 pb-[max(env(safe-area-inset-bottom,8px),8px)]">
-      <div className="max-w-md mx-auto grid grid-cols-4 gap-1">
+      <div className="max-w-md mx-auto grid grid-cols-3 gap-1">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;

@@ -5,7 +5,6 @@ import GamemasterBanner from './components/GamemasterBanner';
 import VendingMap from './components/VendingMap';
 import CodeEntry from './components/CodeEntry';
 import RewardsVault from './components/RewardsVault';
-import AvatarStudio from './components/AvatarStudio';
 import { playTap } from './utils/audio';
 
 const STORAGE_KEY = 'coca_cola_chase_state_v1';
@@ -28,7 +27,7 @@ export default function App() {
     return 2400; // Starting all-time cumulative points
   });
 
-  const [activeTab, setActiveTab] = useState('map'); // 'map' | 'code' | 'rewards' | 'avatar'
+  const [activeTab, setActiveTab] = useState('map'); // 'map' | 'code' | 'rewards'
   const [selectedMachineId, setSelectedMachineId] = useState('HUB-01');
 
   const [claimedCodes, setClaimedCodes] = useState(() => {
@@ -56,30 +55,9 @@ export default function App() {
         status: 'ready', // 'ready' | 'dispensed'
         token: 'NFC-9982-ORIG',
         date: 'Σήμερα, 18:20',
-        wearableKey: 'hat',
         image: '/Pics/avatar-wearable-hat.png',
       },
     ];
-  });
-
-  // Avatar state
-  const [gender, setGender] = useState(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      try { return JSON.parse(saved).gender; } catch (e) {}
-    }
-    return 'male';
-  });
-
-  const [equipped, setEquipped] = useState(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      try { return JSON.parse(saved).equipped; } catch (e) {}
-    }
-    return {
-      hoodie: true,
-      hat: true,
-    };
   });
 
   const [dispenseTargetItem, setDispenseTargetItem] = useState(null);
@@ -91,11 +69,9 @@ export default function App() {
       totalPoints,
       claimedCodes,
       vaultItems,
-      gender,
-      equipped,
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(stateToSave));
-  }, [availablePoints, totalPoints, claimedCodes, vaultItems, gender, equipped]);
+  }, [availablePoints, totalPoints, claimedCodes, vaultItems]);
 
   // Calculate current user level
   let userLevel = 1;
@@ -120,7 +96,6 @@ export default function App() {
       status: 'ready',
       token: `NFC-${Math.floor(1000 + Math.random() * 9000)}-${catalogItem.category.toUpperCase().slice(0, 4)}`,
       date: 'Μόλις τώρα',
-      wearableKey: catalogItem.wearableKey,
       image: catalogItem.image,
       partnerSvg: catalogItem.partnerSvg,
     };
@@ -131,10 +106,6 @@ export default function App() {
     setVaultItems((prev) =>
       prev.map((item) => {
         if (item.id === itemId) {
-          // If it has wearable key, also equip it!
-          if (item.wearableKey) {
-            setEquipped((eq) => ({ ...eq, [item.wearableKey]: true }));
-          }
           return { ...item, status: 'dispensed' };
         }
         return item;
@@ -171,12 +142,9 @@ export default function App() {
         status: 'ready',
         token: 'NFC-9982-ORIG',
         date: 'Σήμερα, 18:20',
-        wearableKey: 'hat',
         image: '/Pics/avatar-wearable-hat.png',
       },
     ]);
-    setGender('male');
-    setEquipped({ hoodie: true, hat: true });
   };
 
   const pendingVaultCount = vaultItems.filter((i) => i.status === 'ready').length;
@@ -234,24 +202,8 @@ export default function App() {
               vaultItems={vaultItems}
               onRedeemItem={handleRedeemItem}
               onDispenseItem={handleDispenseItem}
-              onGoToAvatar={() => setActiveTab('avatar')}
               dispenseTargetItem={dispenseTargetItem}
               setDispenseTargetItem={setDispenseTargetItem}
-            />
-          </div>
-        )}
-
-        {/* TAB 4: AVATAR & IDENTITY */}
-        {activeTab === 'avatar' && (
-          <div className="animate-fadeIn">
-            <AvatarStudio
-              gender={gender}
-              setGender={setGender}
-              equipped={equipped}
-              setEquipped={setEquipped}
-              userLevel={userLevel}
-              totalPoints={totalPoints}
-              unlockedWearables={vaultItems.map((i) => i.wearableKey).filter(Boolean)}
             />
           </div>
         )}

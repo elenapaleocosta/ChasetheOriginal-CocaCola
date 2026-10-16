@@ -9,7 +9,7 @@ import AvatarStudio from './components/AvatarStudio';
 import OriginalMoment from './components/OriginalMoment';
 import { playTap } from './utils/audio';
 
-const STORAGE_KEY = 'coca_cola_chase_state_v1';
+const STORAGE_KEY = 'coca_cola_chase_state_v2';
 
 export default function App() {
   // Initial states with realistic starting demo balance
@@ -46,21 +46,14 @@ export default function App() {
   const [vaultItems, setVaultItems] = useState(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
-      try { return JSON.parse(saved).vaultItems; } catch (e) {}
+      try { 
+        const items = JSON.parse(saved).vaultItems;
+        if (Array.isArray(items)) {
+          return items.filter((v) => v.catalogId !== 'merch-bucket-hat');
+        }
+      } catch (e) {}
     }
-    return [
-      {
-        id: 'vault-1',
-        catalogId: 'merch-bucket-hat',
-        title: "Streetwear Bucket Hat 'Original'",
-        cost: 750,
-        status: 'ready', // 'ready' | 'dispensed'
-        token: 'NFC-9982-ORIG',
-        date: 'Σήμερα, 18:20',
-        wearableKey: 'hat',
-        image: '/Pics/avatar-wearable-hat-transparent.png',
-      },
-    ];
+    return [];
   });
 
   // Avatar state
@@ -75,15 +68,25 @@ export default function App() {
   const [equipped, setEquipped] = useState(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
-      try { return JSON.parse(saved).equipped; } catch (e) {}
+      try { 
+        const eq = JSON.parse(saved).equipped;
+        if (eq) return { ...eq, hat: false };
+      } catch (e) {}
     }
     return {
       hoodie: true,
-      hat: true,
+      hat: false,
     };
   });
 
   const [dispenseTargetItem, setDispenseTargetItem] = useState(null);
+
+  // Clean up legacy v1 storage on initial load
+  useEffect(() => {
+    try {
+      localStorage.removeItem('coca_cola_chase_state_v1');
+    } catch (e) {}
+  }, []);
 
   // Save state changes
   useEffect(() => {
@@ -161,28 +164,19 @@ export default function App() {
 
   const handleResetDemo = () => {
     playTap();
-    localStorage.removeItem(STORAGE_KEY);
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem('coca_cola_chase_state_v1');
+    } catch (e) {}
     setAvailablePoints(1400);
     setTotalPoints(2400);
     setClaimedCodes([
       { code: 'ORIG-100A', points: 100, date: '16:42' },
       { code: 'ORIG-100B', points: 100, date: '17:15' },
     ]);
-    setVaultItems([
-      {
-        id: 'vault-1',
-        catalogId: 'merch-bucket-hat',
-        title: "Streetwear Bucket Hat 'Original'",
-        cost: 750,
-        status: 'ready',
-        token: 'NFC-9982-ORIG',
-        date: 'Σήμερα, 18:20',
-        wearableKey: 'hat',
-        image: '/Pics/avatar-wearable-hat-transparent.png',
-      },
-    ]);
+    setVaultItems([]);
     setGender('male');
-    setEquipped({ hoodie: true, hat: true });
+    setEquipped({ hoodie: true, hat: false });
   };
 
   const pendingVaultCount = vaultItems.filter((i) => i.status === 'ready').length;

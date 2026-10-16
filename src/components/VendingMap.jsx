@@ -55,7 +55,7 @@ export const HUBS = [
     lng: 23.7361,
     stock: [
       { name: 'JBL Clip 4', count: 2, category: 'tech' },
-      { name: 'Thermal Bottle', count: 12, category: 'merch' },
+      { name: 'Tour Hoodie', count: 6, category: 'merch' },
       { name: 'Bucket Hat', count: 5, category: 'merch' },
       { name: 'efood 10€', count: 18, category: 'voucher' },
       { name: 'Wolt 10€', count: 14, category: 'voucher' },
@@ -71,7 +71,7 @@ export const HUBS = [
     lng: 23.6841,
     stock: [
       { name: 'JBL Clip 4', count: 4, category: 'tech' },
-      { name: 'Thermal Bottle', count: 8, category: 'merch' },
+      { name: 'Tour Hoodie', count: 5, category: 'merch' },
       { name: 'Bucket Hat', count: 6, category: 'merch' },
       { name: 'Netflix Pass', count: 10, category: 'voucher' },
       { name: 'Coca-Cola Original Cans', count: 60, category: 'cans' },
@@ -86,7 +86,7 @@ export const HUBS = [
     lng: 23.7258,
     stock: [
       { name: 'Bucket Hat', count: 7, category: 'merch' },
-      { name: 'Thermal Bottle', count: 8, category: 'merch' },
+      { name: 'Tour Hoodie', count: 4, category: 'merch' },
       { name: 'viva.com pass', count: 6, category: 'voucher' },
       { name: 'Coca-Cola Original Cans', count: 52, category: 'cans' },
     ],
@@ -100,7 +100,7 @@ export const HUBS = [
     lng: 23.7915,
     stock: [
       { name: 'JBL Clip 4', count: 1, category: 'tech' },
-      { name: 'Thermal Bottle', count: 9, category: 'merch' },
+      { name: 'Tour Hoodie', count: 5, category: 'merch' },
       { name: 'Bucket Hat', count: 5, category: 'merch' },
       { name: 'Coca-Cola Original Cans', count: 36, category: 'cans' },
     ],

@@ -72,7 +72,7 @@ export const VENDING_MACHINES = [
     hours: "24/7 (Metro Operating)",
     inventory: [
       { name: "JBL Clip 4 Speaker", count: 2, category: "JBL Speakers" },
-      { name: "Thermal Bottle 'Chase the Original'", count: 12, category: "Exclusive Merch" },
+      { name: "Limited Tour Hoodie 2026", count: 12, category: "Exclusive Merch" },
       { name: "Streetwear Bucket Hat", count: 5, category: "Exclusive Merch" },
       { name: "efood 10€ Pass", count: 18, category: "Vouchers" },
       { name: "Wolt 10€ Pass", count: 14, category: "Vouchers" },
@@ -91,7 +91,7 @@ export const VENDING_MACHINES = [
     hours: "09:00 - 21:00",
     inventory: [
       { name: "JBL Clip 4 Speaker", count: 1, category: "JBL Speakers" },
-      { name: "Thermal Bottle 'Chase the Original'", count: 9, category: "Exclusive Merch" },
+      { name: "Limited Tour Hoodie 2026", count: 9, category: "Exclusive Merch" },
       { name: "Streetwear Bucket Hat", count: 5, category: "Exclusive Merch" },
       { name: "Coca-Cola Original 330ml Can", count: 36, category: "Drinks" },
     ],
@@ -108,7 +108,7 @@ export const VENDING_MACHINES = [
     hours: "24/7",
     inventory: [
       { name: "Streetwear Bucket Hat", count: 7, category: "Exclusive Merch" },
-      { name: "Thermal Bottle 'Chase the Original'", count: 8, category: "Exclusive Merch" },
+      { name: "Limited Tour Hoodie 2026", count: 8, category: "Exclusive Merch" },
       { name: "viva.com Ticket Pass", count: 6, category: "Vouchers" },
       { name: "Coca-Cola Original 330ml Can", count: 52, category: "Drinks" },
     ],
@@ -125,7 +125,7 @@ export const VENDING_MACHINES = [
     hours: "24/7 (Flash Drop Spot)",
     inventory: [
       { name: "JBL Clip 4 Speaker", count: 4, category: "JBL Speakers" },
-      { name: "Thermal Bottle 'Chase the Original'", count: 8, category: "Exclusive Merch" },
+      { name: "Limited Tour Hoodie 2026", count: 8, category: "Exclusive Merch" },
       { name: "Streetwear Bucket Hat", count: 6, category: "Exclusive Merch" },
       { name: "Netflix 1-Month Pass", count: 10, category: "Vouchers" },
       { name: "Coca-Cola Original 330ml Can", count: 60, category: "Drinks" },
@@ -142,7 +142,7 @@ export const VENDING_MACHINES = [
     categories: ["Exclusive Merch", "Vouchers"],
     hours: "24/7",
     inventory: [
-      { name: "Thermal Bottle 'Chase the Original'", count: 11, category: "Exclusive Merch" },
+      { name: "Limited Tour Hoodie 2026", count: 11, category: "Exclusive Merch" },
       { name: "Streetwear Bucket Hat", count: 8, category: "Exclusive Merch" },
       { name: "efood 10€ Pass", count: 12, category: "Vouchers" },
       { name: "Coca-Cola Original 330ml Can", count: 42, category: "Drinks" },
@@ -161,7 +161,7 @@ export const VENDING_MACHINES = [
     inventory: [
       { name: "JBL Clip 4 Speaker", count: 3, category: "JBL Speakers" },
       { name: "Streetwear Bucket Hat", count: 12, category: "Exclusive Merch" },
-      { name: "Thermal Bottle 'Chase the Original'", count: 7, category: "Exclusive Merch" },
+      { name: "Limited Tour Hoodie 2026", count: 7, category: "Exclusive Merch" },
       { name: "Coca-Cola Original 330ml Can", count: 64, category: "Drinks" },
     ],
   },
@@ -193,7 +193,7 @@ export const VENDING_MACHINES = [
     hours: "24/7",
     inventory: [
       { name: "JBL Clip 4 Speaker", count: 4, category: "JBL Speakers" },
-      { name: "Thermal Bottle 'Chase the Original'", count: 14, category: "Exclusive Merch" },
+      { name: "Limited Tour Hoodie 2026", count: 14, category: "Exclusive Merch" },
       { name: "Wolt 10€ Pass", count: 20, category: "Vouchers" },
       { name: "Coca-Cola Original 330ml Can", count: 70, category: "Drinks" },
     ],
@@ -210,7 +210,7 @@ export const VENDING_MACHINES = [
     hours: "24/7",
     inventory: [
       { name: "Streetwear Bucket Hat", count: 9, category: "Exclusive Merch" },
-      { name: "Thermal Bottle 'Chase the Original'", count: 6, category: "Exclusive Merch" },
+      { name: "Limited Tour Hoodie 2026", count: 6, category: "Exclusive Merch" },
       { name: "Netflix 1-Month Pass", count: 8, category: "Vouchers" },
       { name: "Coca-Cola Original 330ml Can", count: 44, category: "Drinks" },
     ],
@@ -227,7 +227,7 @@ export const VENDING_MACHINES = [
     hours: "10:00 - 21:00",
     inventory: [
       { name: "JBL Clip 4 Speaker", count: 3, category: "JBL Speakers" },
-      { name: "Thermal Bottle 'Chase the Original'", count: 10, category: "Exclusive Merch" },
+      { name: "Limited Tour Hoodie 2026", count: 10, category: "Exclusive Merch" },
       { name: "efood 10€ Pass", count: 15, category: "Vouchers" },
       { name: "Coca-Cola Original 330ml Can", count: 56, category: "Drinks" },
     ],
@@ -243,7 +243,7 @@ export const VENDING_MACHINES = [
     categories: ["Exclusive Merch", "Vouchers"],
     hours: "24/7",
     inventory: [
-      { name: "Thermal Bottle 'Chase the Original'", count: 8, category: "Exclusive Merch" },
+      { name: "Limited Tour Hoodie 2026", count: 8, category: "Exclusive Merch" },
       { name: "Streetwear Bucket Hat", count: 6, category: "Exclusive Merch" },
       { name: "viva.com Ticket Pass", count: 5, category: "Vouchers" },
       { name: "Coca-Cola Original 330ml Can", count: 38, category: "Drinks" },
@@ -276,7 +276,7 @@ export const VENDING_MACHINES = [
     categories: ["Exclusive Merch", "Vouchers"],
     hours: "24/7",
     inventory: [
-      { name: "Thermal Bottle 'Chase the Original'", count: 7, category: "Exclusive Merch" },
+      { name: "Limited Tour Hoodie 2026", count: 7, category: "Exclusive Merch" },
       { name: "Streetwear Bucket Hat", count: 7, category: "Exclusive Merch" },
       { name: "Wolt 10€ Pass", count: 10, category: "Vouchers" },
       { name: "Coca-Cola Original 330ml Can", count: 40, category: "Drinks" },
@@ -286,20 +286,6 @@ export const VENDING_MACHINES = [
 
 export const REWARDS_CATALOG = [
   // Exclusive Merch (Signed with argyros-signature.svg)
-  {
-    id: "merch-thermal-bottle",
-    category: "merch",
-    title: "Thermal Bottle 'Chase the Original'",
-    greekTitle: "Θερμός Chase the Original (500ml)",
-    cost: 600,
-    requiredLevel: 1,
-    isExclusive: true,
-    hasSignature: true,
-    tag: "SIGNATURE MERCH",
-    description: "Διπλού τοιχώματος ανοξείδωτο ατσάλι. Διατηρεί την Coca-Cola Original παγωμένη για 24 ώρες. Χαραγμένη υπογραφή Κ. Αργυρού.",
-    image: "/Pics/coca-cola-can-original.png", // Fallback / preview
-    wearableKey: null,
-  },
   {
     id: "merch-bucket-hat",
     category: "merch",
@@ -403,4 +389,5 @@ export const REWARDS_CATALOG = [
     wearableKey: null,
   },
 ];
+
 

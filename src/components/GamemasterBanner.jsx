@@ -21,27 +21,26 @@ export default function GamemasterBanner({ onSelectLocation }) {
     <>
       <div 
         onClick={() => { playTap(); setShowModal(true); }}
-        className="w-full bg-[#141414] border border-zinc-800 rounded-2xl p-3.5 cursor-pointer relative overflow-hidden group hover:border-zinc-700 transition-all shadow-lg"
+        className="w-full bg-[#141414] border border-zinc-800 rounded-2xl p-4 cursor-pointer relative overflow-hidden group hover:border-zinc-700 transition-all shadow-xl"
       >
         {/* Subtle red background glow */}
-        <div className="absolute top-0 right-0 w-36 h-36 bg-[#F40009]/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-40 h-40 bg-[#F40009]/10 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="flex items-center gap-3 relative z-10">
+        <div className="flex items-center gap-3.5 relative z-10">
           
-          {/* Portrait Container */}
-          <div className="relative shrink-0 w-16 h-20 rounded-xl overflow-hidden bg-black border border-zinc-700/80 group-hover:border-[#F40009]/80 transition-colors">
+          {/* Portrait Container - Larger & More Cinematic */}
+          <div className="relative shrink-0 w-20 h-24 rounded-xl overflow-hidden bg-black border border-zinc-700/80 group-hover:border-[#F40009]/80 transition-colors shadow-md">
             <img 
               src="/Pics/argyros-gamemaster-portrait.png" 
               alt="Κωνσταντίνος Αργυρός - The Gamemaster" 
               className="w-full h-full object-cover object-top filter brightness-105 group-hover:scale-105 transition-transform duration-300"
             />
-            {/* Live radar dot */}
-            <span className="absolute top-1 right-1 flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F40009] opacity-75" />
+            {/* Live indicator dot (static) */}
+            <span className="absolute top-1.5 right-1.5 flex h-2 w-2">
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#F40009]" />
             </span>
-            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/60 to-transparent p-0.5 text-center">
-              <span className="text-[7.5px] font-mono font-bold tracking-tight text-zinc-300 uppercase">
+            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/70 to-transparent py-1 px-0.5 text-center">
+              <span className="text-[8px] font-mono font-bold tracking-tight text-white uppercase">
                 Gamemaster
               </span>
             </div>
